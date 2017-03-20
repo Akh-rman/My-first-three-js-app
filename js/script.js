@@ -8,10 +8,10 @@ $(function () {
     renderer.setClearColor(new THREE.Color(0xEEEEEE));
 	renderer.setSize(window.innerWidth, window.innerHeight);
     /***********************************************/
-    /**** Добавляем вспомогательные оси и плоскость *******/
+    /******* Добавляем вспомогательные оси и плоскость *******/
 	var axes = new THREE.AxisHelper( 20 );
 	scene.add(axes);
-	var planeGeometry = new THREE.PlaneGeometry(70,30,1,1);
+	var planeGeometry = new THREE.PlaneGeometry(70, 30, 1, 1);
 	var planeMaterial = new THREE.MeshBasicMaterial({color: 0xcccccc});
 	var plane = new THREE.Mesh(planeGeometry,planeMaterial);
 	plane.rotation.x = -0.5*Math.PI;
@@ -19,21 +19,21 @@ $(function () {
 	plane.position.y = 0;
 	plane.position.z = 0;
 	scene.add(plane);
-    /********************************/
+    /******************************/
     /******* Добавлем куб *******/
-	var cubeGeometry = new THREE.CubeGeometry(4,4,4);
+	var cubeGeometry = new THREE.CubeGeometry(4, 4, 4);
 	var cubeMaterial = new THREE.MeshBasicMaterial(
-		{color: 0xff0000, wireframe: true});
+		{color: 0xff0000, /*wireframe: true*/});
 	var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 	cube.position.x = -4;
 	cube.position.y = 3;
 	cube.position.z = 0;
 	scene.add(cube);
-    /**********************/
+    /******************************/
     /***** Добавляем сферу *********/
-	var sphereGeometry = new THREE.SphereGeometry(4,20,20);
+	var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
 	var sphereMaterial = new THREE.MeshBasicMaterial(
-		{color: 0x7777ff, wireframe: true});
+		{color: 0x7777ff, /*wireframe: true*/});
 	var sphere = new THREE.Mesh(sphereGeometry,sphereMaterial);
 	sphere.position.x = 20;
 	sphere.position.y = 4;
@@ -48,5 +48,9 @@ $(function () {
 	$("#WebGL-output").append(renderer.domElement);
 	renderer.render(scene, camera);
     /******************************/
+    /****** Добавляем материалы и освещение *******/
+    var spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight.position.set( -40, 60, -10 );
+    scene.add(spotLight );
+    /******************************/
 });
-
