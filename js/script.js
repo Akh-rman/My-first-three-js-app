@@ -7,6 +7,7 @@ $(function () {
     renderer.setClearColor(0xEEEEEE, 1.0);
     //renderer.setClearColor(new THREE.Color(0xEEEEEE));
 	renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMapEnabled = true;
     /***********************************************/
     /******* Добавляем вспомогательные оси и плоскость *******/
 	var axes = new THREE.AxisHelper(20);
@@ -18,6 +19,7 @@ $(function () {
 	plane.position.x = 15;
 	plane.position.y = 0;
 	plane.position.z = 0;
+    plane.receiveShadow = true;
 	scene.add(plane);
     /******************************/
     /******* Добавлем куб *******/
@@ -28,6 +30,7 @@ $(function () {
 	cube.position.x = -4;
 	cube.position.y = 3;
 	cube.position.z = 0;
+    cube.castShadow = true;
 	scene.add(cube);
     /******************************/
     /******* Добавляем сферу *********/
@@ -38,11 +41,13 @@ $(function () {
 	sphere.position.x = 20;
 	sphere.position.y = 4;
 	sphere.position.z = 2;
+    sphere.castShadow = true;
 	scene.add(sphere);
     /******************************/
     /****** Добавляем освещение *******/
     var spotLight = new THREE.SpotLight(0xffffff);
     spotLight.position.set(-40, 60, -10);
+    spotLight.castShadow = true;
     scene.add(spotLight);
     /******************************/
     /****** Позиционируем камеру и запускаем рендер ******/
