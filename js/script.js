@@ -56,6 +56,19 @@ $(function () {
 	camera.position.z = 30;
 	camera.lookAt(scene.position);
 	$("#WebGL-output").append(renderer.domElement);
-	renderer.render(scene, camera);
+	//renderer.render(scene, camera);
+    var step=0;
+    render();
     /******************************/
+    /***** Функция обрабатывающая рендеринг ****/
+    function render() {
+        cube.rotation.x += 0.02;
+        cube.rotation.y += 0.02;
+        cube.rotation.z += 0.02;
+        step+=0.04;
+        sphere.position.x = 20 + (10 * (Math.cos(step)));
+        sphere.position.y = 2 + (10 * Math.abs(Math.sin(step))); 
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+    }
 });
